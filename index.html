@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sai Sharanya Rangineni — Senior QA Automation Engineer</title>
+<meta name="description" content="Senior QA Automation Engineer with 4.5+ years in Selenium, Playwright, API Testing, CI/CD. Open to Singapore opportunities.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #faf9f7;
+    --accent: #2d6a4f;
+    --accent-light: #40916c;
+    --accent-glow: #52b78830;
+    --warm: #e76f51;
+    --warm-light: #f4a26120;
+    --muted: #6b7280;
+    --border: #e5e2dc;
+    --card-bg: #ffffff;
+    --section-alt: #f3f1ed;
+    --tag-bg: #edf6f0;
+    --tag-text: #2d6a4f;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+    --radius: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: var(--shadow-sm); }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0.8rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 1.15rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted);
+    font-size: 0.88rem; font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .hamburger {
+    display: none; background: none; border: none;
+    cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--ink); margin: 5px 0;
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute;
+    top: -120px; right: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute;
+    bottom: -60px; left: -40px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, var(--warm-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--tag-bg); color: var(--accent);
+    padding: 0.4rem 1rem; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .hero-badge .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent-light);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem; font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.03em;
+    margin-bottom: 0.6rem;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero-role {
+    font-size: 1.15rem; color: var(--muted);
+    font-weight: 500; margin-bottom: 1.5rem;
+  }
+  .hero-desc {
+    font-size: 1rem; color: #4a4a5a;
+    max-width: 480px; margin-bottom: 2rem;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.6rem; border-radius: 8px;
+    text-decoration: none; font-weight: 600;
+    font-size: 0.9rem; transition: all 0.25s;
+    cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    box-shadow: 0 2px 8px rgba(45,106,79,0.25);
+  }
+  .btn-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(45,106,79,0.3);
+  }
+  .btn-outline {
+    background: transparent; color: var(--accent);
+    border: 1.5px solid var(--accent);
+  }
+  .btn-outline:hover {
+    background: var(--tag-bg);
+    transform: translateY(-1px);
+  }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* hero visual — stats card cluster */
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .stat-row { display: flex; gap: 1.2rem; }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    flex: 1;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--accent);
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-size: 0.82rem; color: var(--muted);
+    margin-top: 0.3rem; font-weight: 500;
+  }
+  .stat-card.highlight {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .stat-card.highlight .stat-number { color: #fff; }
+  .stat-card.highlight .stat-label { color: rgba(255,255,255,0.8); }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding: 5rem 2rem; }
+  .section-alt { background: var(--section-alt); }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--accent); margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .skill-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .skill-icon {
+    width: 40px; height: 40px;
+    background: var(--tag-bg);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  .skill-card h3 {
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .skill-card p {
+    font-size: 0.88rem; color: var(--muted);
+    line-height: 1.6;
+  }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 0.8rem;
+  }
+  .skill-tag {
+    background: var(--tag-bg); color: var(--tag-text);
+    padding: 0.25rem 0.6rem; border-radius: 5px;
+    font-size: 0.75rem; font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .project-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  }
+  .project-card.warm .project-bar {
+    background: linear-gradient(90deg, var(--warm), #f4a261);
+  }
+  .project-body { padding: 1.8rem; }
+  .project-type {
+    font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent); margin-bottom: 0.5rem;
+  }
+  .project-card.warm .project-type { color: var(--warm); }
+  .project-body h3 {
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 0.6rem; line-height: 1.3;
+  }
+  .project-body p {
+    font-size: 0.88rem; color: var(--muted);
+    line-height: 1.6; margin-bottom: 1rem;
+  }
+  .project-links { display: flex; gap: 0.8rem; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--accent); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--accent-light); }
+  .project-link svg { width: 14px; height: 14px; }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { position: relative; padding-left: 2.5rem; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 7px; top: 8px; bottom: 8px;
+    width: 2px; background: var(--border);
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 2.5rem;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: -2.5rem; top: 6px;
+    width: 16px; height: 16px;
+    background: var(--card-bg);
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+  }
+  .timeline-item.past .timeline-dot {
+    border-color: var(--muted);
+    background: var(--muted);
+  }
+  .timeline-period {
+    font-size: 0.78rem; color: var(--muted);
+    font-weight: 600; margin-bottom: 0.3rem;
+    letter-spacing: 0.02em;
+  }
+  .timeline-company {
+    font-size: 1.15rem; font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
+  .timeline-role {
+    font-size: 0.92rem; color: var(--accent);
+    font-weight: 600; margin-bottom: 0.5rem;
+  }
+  .timeline-desc {
+    font-size: 0.88rem; color: var(--muted);
+    line-height: 1.6;
+  }
+  .timeline-tags {
+    display: flex; flex-wrap: wrap; gap: 0.35rem;
+    margin-top: 0.7rem;
+  }
+
+  /* ── DOMAINS ── */
+  .domain-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+  }
+  .domain-card {
+    text-align: center;
+    padding: 2rem 1.2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .domain-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .domain-emoji {
+    font-size: 2rem; margin-bottom: 0.8rem;
+    display: block;
+  }
+  .domain-card h4 {
+    font-size: 0.92rem; font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .domain-card p {
+    font-size: 0.78rem; color: var(--muted);
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-row { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .cert-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    flex: 1; min-width: 280px;
+    transition: transform 0.3s;
+  }
+  .cert-card:hover { transform: translateY(-2px); }
+  .cert-icon {
+    width: 48px; height: 48px;
+    background: var(--tag-bg);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .cert-card h4 { font-size: 0.95rem; font-weight: 700; }
+  .cert-card p { font-size: 0.82rem; color: var(--muted); }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+  .contact-section .section-label { color: rgba(255,255,255,0.6); }
+  .contact-section .section-title { color: #fff; }
+  .contact-desc {
+    color: rgba(255,255,255,0.8);
+    max-width: 520px; margin: 1rem auto 2rem;
+    font-size: 1rem;
+  }
+  .contact-links {
+    display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    color: #fff; text-decoration: none;
+    font-weight: 600; font-size: 0.9rem;
+    transition: all 0.25s;
+  }
+  .contact-btn:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+  }
+  .contact-btn svg { width: 16px; height: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 1.5rem;
+    font-size: 0.78rem; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero h1 { font-size: 2.4rem; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: 1fr; }
+    .domain-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--paper); padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .hamburger { display: block; }
+    .hero { padding: 5rem 1.2rem 3rem; min-height: auto; }
+    .hero h1 { font-size: 2rem; }
+    .stat-row { flex-direction: column; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .domain-grid { grid-template-columns: 1fr 1fr; }
+    section { padding: 3.5rem 1.2rem; }
+    .section-title { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">S. Sharanya</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#domains">Domains</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text fade-up">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Open to Opportunities in Singapore
+      </div>
+      <h1>Sai Sharanya<br><span class="accent">Rangineni</span></h1>
+      <p class="hero-role">Senior QA Automation Engineer</p>
+      <p class="hero-desc">
+        Building reliable automation frameworks and testing strategies across healthcare, capital markets, and investment banking — with Selenium, Playwright, REST APIs, and CI/CD at the core.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          View Projects
+        </a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up" style="transition-delay: 0.15s;">
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-number">4.5+</div>
+          <div class="stat-label">Years in QA & Automation</div>
+        </div>
+        <div class="stat-card highlight">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Automated Regression Suites</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Industry Domains</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Testing Frameworks</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">Core Competencies</span>
+      <h2 class="section-title">Technical Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🎭</div>
+        <h3>UI Automation</h3>
+        <p>End-to-end browser automation with robust frameworks and Page Object patterns.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Selenium</span>
+          <span class="skill-tag">Playwright</span>
+          <span class="skill-tag">Cucumber BDD</span>
+          <span class="skill-tag">UFT</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.08s;">
+        <div class="skill-icon">🔌</div>
+        <h3>API Testing</h3>
+        <p>Comprehensive REST API validation, schema checks, chained requests, and CI integration.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Postman</span>
+          <span class="skill-tag">Newman</span>
+          <span class="skill-tag">REST Assured</span>
+          <span class="skill-tag">Insomnia</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.16s;">
+        <div class="skill-icon">⚡</div>
+        <h3>Performance Testing</h3>
+        <p>Load and stress testing with SLA analysis, concurrency, and scalability benchmarking.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">JMeter</span>
+          <span class="skill-tag">SLA Analysis</span>
+          <span class="skill-tag">Load Testing</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🔧</div>
+        <h3>Programming</h3>
+        <p>Writing automation scripts, tooling, and utilities across multiple languages.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Bash</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.08s;">
+        <div class="skill-icon">🚀</div>
+        <h3>CI/CD & DevOps</h3>
+        <p>Pipeline integration, containerized test execution, and cloud-based environments.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.16s;">
+        <div class="skill-icon">☁️</div>
+        <h3>Cloud & Data</h3>
+        <p>Multi-cloud experience with SQL-driven data validation and ETL testing.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Azure</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Linux</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">Portfolio</span>
+      <h2 class="section-title">Featured Projects</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card fade-up">
+        <div class="project-bar"></div>
+        <div class="project-body">
+          <div class="project-type">Playwright • TypeScript</div>
+          <h3>E2E Testing Framework — Playwright</h3>
+          <p>Modern end-to-end test framework with Page Object Model, API mocking, parallel execution, visual regression testing, and HTML reporting. Built against SauceDemo.</p>
+          <div class="skill-tags" style="margin-bottom:1rem;">
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">POM</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">Visual Regression</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub Repo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card warm fade-up" style="transition-delay:0.08s;">
+        <div class="project-bar"></div>
+        <div class="project-body">
+          <div class="project-type">Selenium • Java • Cucumber</div>
+          <h3>BDD Automation Framework — Selenium</h3>
+          <p>Scalable Selenium WebDriver framework with Cucumber BDD, data-driven testing, cross-browser execution, Allure reporting, and Docker-based test runs.</p>
+          <div class="skill-tags" style="margin-bottom:1rem;">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">BDD</span>
+            <span class="skill-tag">Allure</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub Repo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-bar"></div>
+        <div class="project-body">
+          <div class="project-type">Postman • Newman • REST Assured</div>
+          <h3>API Testing Suite</h3>
+          <p>Comprehensive API test suite with schema validation, chained requests, environment-based configs, Newman CLI execution, and GitHub Actions CI pipeline.</p>
+          <div class="skill-tags" style="margin-bottom:1rem;">
+            <span class="skill-tag">REST API</span>
+            <span class="skill-tag">Newman</span>
+            <span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">JSON Schema</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub Repo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card warm fade-up" style="transition-delay:0.08s;">
+        <div class="project-bar"></div>
+        <div class="project-body">
+          <div class="project-type">JMeter • Performance</div>
+          <h3>Performance Testing Dashboard</h3>
+          <p>JMeter test plans with HTML dashboard output, SLA threshold validation, load profiles for peak and sustained traffic, and Python-based result analysis scripts.</p>
+          <div class="skill-tags" style="margin-bottom:1rem;">
+            <span class="skill-tag">JMeter</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SLA</span>
+            <span class="skill-tag">HTML Reports</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub Repo
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">Career</span>
+      <h2 class="section-title">Professional Experience</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Oct 2025 — Present</div>
+        <div class="timeline-company">Optum — UnitedHealth Group</div>
+        <div class="timeline-role">Senior Engineer – Automation</div>
+        <div class="timeline-desc">
+          API & UI automation for the Provider Search (PES) platform. Building test suites with Postman, Selenium + Cucumber, and JMeter. Hands-on with Docker, Kubernetes, GitHub Actions CI/CD, and cloud deployments on AWS & Azure.
+        </div>
+        <div class="timeline-tags">
+          <span class="skill-tag">Selenium</span>
+          <span class="skill-tag">Postman</span>
+          <span class="skill-tag">JMeter</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">K8s</span>
+          <span class="skill-tag">Git Actions</span>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Mar 2023 — Sep 2025</div>
+        <div class="timeline-company">Accenture — Roche (DIA AMS)</div>
+        <div class="timeline-role">Automation Tester & Business Analyst</div>
+        <div class="timeline-desc">
+          Dual role: built Selenium-Cucumber automation framework (30+ regression tests), integrated with Jenkins CI/CD, and served as Business Analyst gathering requirements and creating Figma UI mockups for Roche's pharmaceutical platform.
+        </div>
+        <div class="timeline-tags">
+          <span class="skill-tag">Selenium</span>
+          <span class="skill-tag">Cucumber</span>
+          <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">Postman</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">JMeter</span>
+        </div>
+      </div>
+
+      <div class="timeline-item past fade-up">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Oct 2021 — Feb 2023</div>
+        <div class="timeline-company">Accenture — UBS & Broadridge (WMAP)</div>
+        <div class="timeline-role">Functional Test Engineer</div>
+        <div class="timeline-desc">
+          End-to-end SIT for Corporate Actions and Income Processing at UBS. Point of Contact for Payment Matcher. Recognized by client for quality delivery with rewards and nominations.
+        </div>
+        <div class="timeline-tags">
+          <span class="skill-tag">SIT</span>
+          <span class="skill-tag">JIRA</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Capital Markets</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINS -->
+<section id="domains">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">Industry Experience</span>
+      <h2 class="section-title">Domains</h2>
+    </div>
+    <div class="domain-grid">
+      <div class="domain-card fade-up">
+        <span class="domain-emoji">🏥</span>
+        <h4>Healthcare</h4>
+        <p>Optum / UHG — Provider systems</p>
+      </div>
+      <div class="domain-card fade-up" style="transition-delay:0.06s;">
+        <span class="domain-emoji">💊</span>
+        <h4>Pharma & Diagnostics</h4>
+        <p>Roche — API & automation testing</p>
+      </div>
+      <div class="domain-card fade-up" style="transition-delay:0.12s;">
+        <span class="domain-emoji">📊</span>
+        <h4>Capital Markets</h4>
+        <p>UBS — Corporate actions</p>
+      </div>
+      <div class="domain-card fade-up" style="transition-delay:0.18s;">
+        <span class="domain-emoji">🏦</span>
+        <h4>Wealth Management</h4>
+        <p>Broadridge — Income processing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">Credentials</span>
+      <h2 class="section-title">Education & Certifications</h2>
+    </div>
+    <div class="cert-row">
+      <div class="cert-card fade-up">
+        <div class="cert-icon">🎓</div>
+        <div>
+          <h4>B.Tech — Computer Science</h4>
+          <p>Bachelor of Technology</p>
+        </div>
+      </div>
+      <div class="cert-card fade-up" style="transition-delay:0.08s;">
+        <div class="cert-icon">🤖</div>
+        <div>
+          <h4>Salesforce AI Associate</h4>
+          <p>Certified</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">Let's Connect</span>
+      <h2 class="section-title">Open to Singapore Opportunities</h2>
+      <p class="contact-desc">
+        Currently based in Hyderabad, India — EP eligible and ready to relocate. Let's talk about how I can contribute to your QA team.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:saisharanya.rangineni@gmail.com" class="contact-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email Me
+        </a>
+        <a href="https://linkedin.com/in/saisharanyarangineni" target="_blank" class="contact-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/sharanyarangineni" target="_blank" class="contact-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="tel:+919701450017" class="contact-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Sai Sharanya Rangineni — Built with purpose.</p>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
