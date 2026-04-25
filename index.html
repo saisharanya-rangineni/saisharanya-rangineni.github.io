@@ -28,7 +28,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -65,8 +64,16 @@
     font-size: 0.88rem; font-weight: 500;
     transition: color 0.2s;
     letter-spacing: 0.02em;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute;
+    bottom: -4px; left: 0; width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
   }
   .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
   .hamburger {
     display: none; background: none; border: none;
     cursor: pointer; padding: 4px;
@@ -91,6 +98,7 @@
     width: 500px; height: 500px;
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
     pointer-events: none;
+    animation: float 8s ease-in-out infinite;
   }
   .hero::after {
     content: ''; position: absolute;
@@ -98,6 +106,11 @@
     width: 300px; height: 300px;
     background: radial-gradient(circle, var(--warm-light) 0%, transparent 70%);
     pointer-events: none;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(15px, -20px); }
   }
   .hero-inner {
     max-width: 1100px; margin: 0 auto; width: 100%;
@@ -129,10 +142,45 @@
     margin-bottom: 0.6rem;
   }
   .hero h1 .accent { color: var(--accent); }
-  .hero-role {
-    font-size: 1.15rem; color: var(--muted);
-    font-weight: 500; margin-bottom: 1.5rem;
+
+  /* Typing effect */
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    min-height: 1.8em;
+    display: flex;
+    align-items: center;
   }
+  .hero-tagline .cursor {
+    display: inline-block;
+    width: 2px; height: 1.2em;
+    background: var(--accent);
+    margin-left: 2px;
+    animation: blink 0.8s infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-impact {
+    display: flex; gap: 1.5rem; margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .impact-chip {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--warm-light);
+    border: 1px solid rgba(231,111,81,0.15);
+    color: var(--warm);
+    padding: 0.35rem 0.9rem; border-radius: 50px;
+    font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+  .impact-chip svg { width: 14px; height: 14px; }
+
   .hero-desc {
     font-size: 1rem; color: #4a4a5a;
     max-width: 480px; margin-bottom: 2rem;
@@ -151,8 +199,8 @@
   }
   .btn-primary:hover {
     background: var(--accent-light);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(45,106,79,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45,106,79,0.3);
   }
   .btn-outline {
     background: transparent; color: var(--accent);
@@ -160,11 +208,20 @@
   }
   .btn-outline:hover {
     background: var(--tag-bg);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+  }
+  .btn-warm {
+    background: var(--warm); color: #fff;
+    box-shadow: 0 2px 8px rgba(231,111,81,0.25);
+  }
+  .btn-warm:hover {
+    background: #d4603e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(231,111,81,0.3);
   }
   .btn svg { width: 16px; height: 16px; }
 
-  /* hero visual — profile photo + stats */
+  /* hero visual */
   .profile-photo-wrapper {
     display: flex; justify-content: center;
     margin-bottom: 1.5rem;
@@ -175,7 +232,9 @@
     object-fit: cover;
     border: 4px solid var(--accent);
     box-shadow: 0 4px 20px rgba(45,106,79,0.2);
+    transition: transform 0.4s ease;
   }
+  .profile-photo:hover { transform: scale(1.05); }
   .profile-initials {
     width: 150px; height: 150px;
     border-radius: 50%;
@@ -186,8 +245,6 @@
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 4px 20px rgba(45,106,79,0.2);
   }
-
-  /* hero visual — stats card cluster */
   .hero-visual {
     position: relative; z-index: 1;
     display: flex; flex-direction: column; gap: 1.2rem;
@@ -203,7 +260,7 @@
     transition: transform 0.3s, box-shadow 0.3s;
   }
   .stat-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
     cursor: pointer;
   }
@@ -217,20 +274,12 @@
     font-size: 0.82rem; color: var(--muted);
     margin-top: 0.3rem; font-weight: 500;
   }
-  .stat-card.highlight {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-  .stat-card.highlight .stat-number { color: #fff; }
-  .stat-card.highlight .stat-label { color: rgba(255,255,255,0.8); }
 
   /* ── SECTIONS SHARED ── */
   section { padding: 5rem 2rem; }
   .section-alt { background: var(--section-alt); }
   .container { max-width: 1100px; margin: 0 auto; }
-  .section-header {
-    margin-bottom: 3rem;
-  }
+  .section-header { margin-bottom: 3rem; }
   .section-label {
     display: inline-block;
     font-size: 0.75rem; font-weight: 700;
@@ -253,10 +302,20 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 1.8rem;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
   }
+  .skill-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .skill-card:hover::before { transform: scaleX(1); }
   .skill-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
   }
   .skill-icon {
@@ -284,6 +343,12 @@
     padding: 0.25rem 0.6rem; border-radius: 5px;
     font-size: 0.75rem; font-weight: 600;
     font-family: 'JetBrains Mono', monospace;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+  .skill-tag:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: scale(1.05);
   }
 
   /* ── PROJECTS ── */
@@ -295,10 +360,10 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
   .project-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
     box-shadow: var(--shadow-lg);
   }
   .project-bar {
@@ -317,23 +382,62 @@
   .project-card.warm .project-type { color: var(--warm); }
   .project-body h3 {
     font-size: 1.1rem; font-weight: 700;
-    margin-bottom: 0.6rem; line-height: 1.3;
+    margin-bottom: 0.8rem; line-height: 1.3;
   }
-  .project-body p {
-    font-size: 0.88rem; color: var(--muted);
-    line-height: 1.6; margin-bottom: 1rem;
+
+  /* Problem > Approach > Impact */
+  .project-pai { margin-bottom: 1rem; }
+  .project-pai-item {
+    display: flex; gap: 0.6rem; margin-bottom: 0.5rem;
+    font-size: 0.88rem; line-height: 1.6;
   }
-  .project-links { display: flex; gap: 0.8rem; }
+  .project-pai-label {
+    font-weight: 700; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem; border-radius: 4px;
+    white-space: nowrap; height: fit-content;
+    margin-top: 0.15rem; flex-shrink: 0;
+  }
+  .pai-problem .project-pai-label { background: #fde8e4; color: #c0392b; }
+  .pai-approach .project-pai-label { background: #e8f0fe; color: #1a5276; }
+  .pai-impact .project-pai-label { background: #e8f5e9; color: #1b7a3d; }
+  .project-pai-text { color: var(--muted); }
+
+  .project-links { display: flex; gap: 0.8rem; margin-top: 1rem; }
   .project-link {
     display: inline-flex; align-items: center; gap: 0.4rem;
     font-size: 0.82rem; font-weight: 600;
     color: var(--accent); text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.2s, background 0.2s;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    background: var(--tag-bg);
   }
-  .project-link:hover { color: var(--accent-light); }
+  .project-link:hover {
+    color: #fff;
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
   .project-link svg { width: 14px; height: 14px; }
 
-  /* ── EXPERIENCE TIMELINE ── */
+  .project-demo-placeholder {
+    background: var(--section-alt);
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    transition: border-color 0.3s;
+  }
+  .project-demo-placeholder:hover { border-color: var(--accent); }
+  .project-demo-placeholder svg {
+    width: 24px; height: 24px; margin-bottom: 0.3rem;
+    opacity: 0.5; display: block; margin-left: auto; margin-right: auto;
+  }
+
+  /* ── TIMELINE ── */
   .timeline { position: relative; padding-left: 2.5rem; }
   .timeline::before {
     content: ''; position: absolute;
@@ -350,7 +454,9 @@
     background: var(--card-bg);
     border: 3px solid var(--accent);
     border-radius: 50%;
+    transition: transform 0.3s;
   }
+  .timeline-item:hover .timeline-dot { transform: scale(1.3); }
   .timeline-item.past .timeline-dot {
     border-color: var(--muted);
     background: var(--muted);
@@ -358,7 +464,6 @@
   .timeline-period {
     font-size: 0.78rem; color: var(--muted);
     font-weight: 600; margin-bottom: 0.3rem;
-    letter-spacing: 0.02em;
   }
   .timeline-company {
     font-size: 1.15rem; font-weight: 700;
@@ -377,6 +482,83 @@
     margin-top: 0.7rem;
   }
 
+  /* ── WHY HIRE ME ── */
+  .whyhire-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
+  }
+  .whyhire-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .whyhire-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+  .whyhire-card:hover::after { transform: scaleX(1); }
+  .whyhire-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  .whyhire-icon {
+    width: 52px; height: 52px;
+    background: var(--tag-bg);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+  }
+  .whyhire-card h4 {
+    font-size: 0.95rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .whyhire-card p {
+    font-size: 0.82rem; color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── MY STORY ── */
+  .story-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .story-content blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    position: relative;
+    font-style: italic;
+    padding-left: 1.5rem;
+  }
+  .story-content blockquote::before {
+    content: '\201C';
+    font-size: 4rem;
+    color: var(--accent-glow);
+    position: absolute;
+    top: -1.2rem; left: -1rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+  }
+  .story-text {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    text-align: left;
+  }
+
   /* ── DOMAINS ── */
   .domain-grid {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
@@ -390,22 +572,14 @@
     transition: transform 0.3s, box-shadow 0.3s;
   }
   .domain-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
   }
-  .domain-emoji {
-    font-size: 2rem; margin-bottom: 0.8rem;
-    display: block;
-  }
-  .domain-card h4 {
-    font-size: 0.92rem; font-weight: 700;
-    margin-bottom: 0.3rem;
-  }
-  .domain-card p {
-    font-size: 0.78rem; color: var(--muted);
-  }
+  .domain-emoji { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+  .domain-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .domain-card p { font-size: 0.78rem; color: var(--muted); }
 
-  /* ── CERTIFICATIONS ── */
+  /* ── CERTS ── */
   .cert-row { display: flex; gap: 1.2rem; flex-wrap: wrap; }
   .cert-card {
     background: var(--card-bg);
@@ -416,7 +590,7 @@
     flex: 1; min-width: 280px;
     transition: transform 0.3s;
   }
-  .cert-card:hover { transform: translateY(-2px); }
+  .cert-card:hover { transform: translateY(-3px); }
   .cert-icon {
     width: 48px; height: 48px;
     background: var(--tag-bg);
@@ -427,19 +601,89 @@
   .cert-card h4 { font-size: 0.95rem; font-weight: 700; }
   .cert-card p { font-size: 0.82rem; color: var(--muted); }
 
+  /* ── TESTIMONIALS ── */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .testimonial-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .testimonial-card::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--accent-glow);
+    position: absolute; top: 1rem; left: 1.5rem;
+    line-height: 1;
+  }
+  .testimonial-text {
+    font-size: 0.92rem;
+    color: #4a4a5a;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1.2rem;
+    padding-top: 1rem;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .testimonial-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--tag-bg);
+    color: var(--accent);
+    font-weight: 700; font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .testimonial-name { font-weight: 700; font-size: 0.88rem; }
+  .testimonial-role { font-size: 0.78rem; color: var(--muted); }
+  .testimonial-note {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
   /* ── CONTACT ── */
   .contact-section {
     background: var(--accent);
     color: #fff;
     text-align: center;
     padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
   }
   .contact-section .section-label { color: rgba(255,255,255,0.6); }
-  .contact-section .section-title { color: #fff; }
+  .contact-section .section-title { color: #fff; margin-bottom: 0.5rem; }
+  .contact-cta-text {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.1rem;
+    max-width: 560px;
+    margin: 0 auto 0.5rem;
+    font-weight: 500;
+    line-height: 1.7;
+  }
   .contact-desc {
-    color: rgba(255,255,255,0.8);
-    max-width: 520px; margin: 1rem auto 2rem;
-    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 520px; margin: 0 auto 2rem;
+    font-size: 0.95rem;
   }
   .contact-links {
     display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
@@ -456,7 +700,19 @@
   }
   .contact-btn:hover {
     background: rgba(255,255,255,0.25);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+  .contact-btn.highlight {
+    background: #fff;
+    color: var(--accent);
+    border-color: #fff;
+    font-weight: 700;
+  }
+  .contact-btn.highlight:hover {
+    background: var(--tag-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   }
   .contact-btn svg { width: 16px; height: 16px; }
 
@@ -469,12 +725,18 @@
 
   /* ── ANIMATIONS ── */
   .fade-up {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .fade-up.visible {
     opacity: 1; transform: translateY(0);
   }
+  .stagger-children > .fade-up:nth-child(1) { transition-delay: 0s; }
+  .stagger-children > .fade-up:nth-child(2) { transition-delay: 0.07s; }
+  .stagger-children > .fade-up:nth-child(3) { transition-delay: 0.14s; }
+  .stagger-children > .fade-up:nth-child(4) { transition-delay: 0.21s; }
+  .stagger-children > .fade-up:nth-child(5) { transition-delay: 0.28s; }
+  .stagger-children > .fade-up:nth-child(6) { transition-delay: 0.35s; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
@@ -483,6 +745,8 @@
     .skills-grid { grid-template-columns: repeat(2, 1fr); }
     .projects-grid { grid-template-columns: 1fr; }
     .domain-grid { grid-template-columns: repeat(2, 1fr); }
+    .whyhire-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
     .nav-links { display: none; }
@@ -499,8 +763,13 @@
     .stat-row { flex-direction: column; }
     .skills-grid { grid-template-columns: 1fr; }
     .domain-grid { grid-template-columns: 1fr 1fr; }
+    .whyhire-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
     section { padding: 3.5rem 1.2rem; }
     .section-title { font-size: 1.7rem; }
+    .hero-impact { flex-direction: column; gap: 0.6rem; }
+    .story-content blockquote { font-size: 1.15rem; }
+    .story-content blockquote::before { left: -0.5rem; }
   }
 </style>
 </head>
@@ -514,7 +783,7 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#domains">Domains</a></li>
+      <li><a href="#whyhire">Why Me</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -532,9 +801,25 @@
         Open to Opportunities in Singapore
       </div>
       <h1>Sai Sharanya<br><span class="accent">Rangineni</span></h1>
-      <p class="hero-role">Senior QA Automation Engineer</p>
+      <div class="hero-tagline">
+        <span id="typed-text"></span><span class="cursor"></span>
+      </div>
+      <div class="hero-impact">
+        <span class="impact-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          30+ regression tests automated at Roche
+        </span>
+        <span class="impact-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Client-recognised for quality at UBS
+        </span>
+      </div>
       <p class="hero-desc">
-        Building reliable automation frameworks and testing strategies across healthcare, capital markets, and investment banking — with Selenium, Playwright, REST APIs, and CI/CD at the core.
+        Hi, I am Sai Sharanya Rangineni. I ensure software works the way it should, reliably, efficiently, and at scale.
+        I specialise in automation testing with 4.5+ years of experience, building robust test frameworks, and helping teams release with confidence. My focus is on catching issues early, improving quality, and reducing manual effort through smart automation.
+      </p>
+      <p style="font-size:0.95rem; color:var(--accent); font-weight:600; margin-bottom:1.5rem;">
+        👉 Open to opportunities in Automation Testing and Quality Engineering
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">
@@ -542,6 +827,10 @@
           View Projects
         </a>
         <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        <a href="resume.pdf" download class="btn btn-warm" title="Download Resume">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Resume
+        </a>
       </div>
     </div>
     <div class="hero-visual fade-up" style="transition-delay: 0.15s;">
@@ -574,7 +863,7 @@
       <span class="section-label">Core Competencies</span>
       <h2 class="section-title">Technical Skills</h2>
     </div>
-    <div class="skills-grid">
+    <div class="skills-grid stagger-children">
       <div class="skill-card fade-up">
         <div class="skill-icon">🎭</div>
         <h3>UI Automation</h3>
@@ -586,7 +875,7 @@
           <span class="skill-tag">UFT</span>
         </div>
       </div>
-      <div class="skill-card fade-up" style="transition-delay:0.08s;">
+      <div class="skill-card fade-up">
         <div class="skill-icon">🔌</div>
         <h3>API Testing</h3>
         <p>Comprehensive REST API validation, schema checks, chained requests, and CI integration.</p>
@@ -597,7 +886,7 @@
           <span class="skill-tag">Insomnia</span>
         </div>
       </div>
-      <div class="skill-card fade-up" style="transition-delay:0.16s;">
+      <div class="skill-card fade-up">
         <div class="skill-icon">⚡</div>
         <h3>Performance Testing</h3>
         <p>Load and stress testing with SLA analysis, concurrency, and scalability benchmarking.</p>
@@ -618,7 +907,7 @@
           <span class="skill-tag">Bash</span>
         </div>
       </div>
-      <div class="skill-card fade-up" style="transition-delay:0.08s;">
+      <div class="skill-card fade-up">
         <div class="skill-icon">🚀</div>
         <h3>CI/CD & DevOps</h3>
         <p>Pipeline integration, containerized test execution, and cloud-based environments.</p>
@@ -629,7 +918,7 @@
           <span class="skill-tag">Kubernetes</span>
         </div>
       </div>
-      <div class="skill-card fade-up" style="transition-delay:0.16s;">
+      <div class="skill-card fade-up">
         <div class="skill-icon">☁️</div>
         <h3>Cloud & Data</h3>
         <p>Multi-cloud experience with SQL-driven data validation and ETL testing.</p>
@@ -658,8 +947,25 @@
         <div class="project-body">
           <div class="project-type">Playwright • TypeScript</div>
           <h3>E2E Testing Framework — Playwright</h3>
-          <p>Modern end-to-end test framework with Page Object Model, API mocking, parallel execution, visual regression testing, and HTML reporting. Built against SauceDemo.</p>
-          <div class="skill-tags" style="margin-bottom:1rem;">
+          <div class="project-demo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <div>Demo GIF / video coming soon</div>
+          </div>
+          <div class="project-pai">
+            <div class="project-pai-item pai-problem">
+              <span class="project-pai-label">Problem</span>
+              <span class="project-pai-text">Manual regression testing was slow, error-prone, and couldn't keep pace with weekly releases.</span>
+            </div>
+            <div class="project-pai-item pai-approach">
+              <span class="project-pai-label">Approach</span>
+              <span class="project-pai-text">Built a Playwright + TypeScript framework with Page Object Model, API mocking, parallel execution, and visual regression.</span>
+            </div>
+            <div class="project-pai-item pai-impact">
+              <span class="project-pai-label">Impact</span>
+              <span class="project-pai-text">Reduced regression cycle from hours to minutes with full CI/CD integration and automated HTML reporting.</span>
+            </div>
+          </div>
+          <div class="skill-tags">
             <span class="skill-tag">TypeScript</span>
             <span class="skill-tag">POM</span>
             <span class="skill-tag">CI/CD</span>
@@ -679,8 +985,25 @@
         <div class="project-body">
           <div class="project-type">Selenium • Java • Cucumber</div>
           <h3>BDD Automation Framework — Selenium</h3>
-          <p>Scalable Selenium WebDriver framework with Cucumber BDD, data-driven testing, cross-browser execution, Allure reporting, and Docker-based test runs.</p>
-          <div class="skill-tags" style="margin-bottom:1rem;">
+          <div class="project-demo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <div>Demo GIF / video coming soon</div>
+          </div>
+          <div class="project-pai">
+            <div class="project-pai-item pai-problem">
+              <span class="project-pai-label">Problem</span>
+              <span class="project-pai-text">Testing across browsers was fragmented with different scripts, inconsistent results, and no shared test language with the business.</span>
+            </div>
+            <div class="project-pai-item pai-approach">
+              <span class="project-pai-label">Approach</span>
+              <span class="project-pai-text">Created a scalable Selenium + Cucumber BDD framework with data-driven tests, cross-browser execution, Allure reporting, and Docker-based runs.</span>
+            </div>
+            <div class="project-pai-item pai-impact">
+              <span class="project-pai-label">Impact</span>
+              <span class="project-pai-text">Unified test language for dev and QA, enabling non-technical stakeholders to review scenarios. 30+ automated regression tests built for Roche.</span>
+            </div>
+          </div>
+          <div class="skill-tags">
             <span class="skill-tag">Java</span>
             <span class="skill-tag">BDD</span>
             <span class="skill-tag">Allure</span>
@@ -700,8 +1023,25 @@
         <div class="project-body">
           <div class="project-type">Postman • Newman • REST Assured</div>
           <h3>API Testing Suite</h3>
-          <p>Comprehensive API test suite with schema validation, chained requests, environment-based configs, Newman CLI execution, and GitHub Actions CI pipeline.</p>
-          <div class="skill-tags" style="margin-bottom:1rem;">
+          <div class="project-demo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <div>Demo GIF / video coming soon</div>
+          </div>
+          <div class="project-pai">
+            <div class="project-pai-item pai-problem">
+              <span class="project-pai-label">Problem</span>
+              <span class="project-pai-text">API changes were breaking downstream integrations without warning because no systematic validation existed.</span>
+            </div>
+            <div class="project-pai-item pai-approach">
+              <span class="project-pai-label">Approach</span>
+              <span class="project-pai-text">Built a comprehensive suite with JSON schema validation, chained request flows, environment-based configs, and Newman CLI for CI.</span>
+            </div>
+            <div class="project-pai-item pai-impact">
+              <span class="project-pai-label">Impact</span>
+              <span class="project-pai-text">Caught breaking API changes pre-deployment with automated GitHub Actions pipeline, eliminating manual validation on every push.</span>
+            </div>
+          </div>
+          <div class="skill-tags">
             <span class="skill-tag">REST API</span>
             <span class="skill-tag">Newman</span>
             <span class="skill-tag">GitHub Actions</span>
@@ -721,8 +1061,25 @@
         <div class="project-body">
           <div class="project-type">JMeter • Performance</div>
           <h3>Performance Testing Dashboard</h3>
-          <p>JMeter test plans with HTML dashboard output, SLA threshold validation, load profiles for peak and sustained traffic, and Python-based result analysis scripts.</p>
-          <div class="skill-tags" style="margin-bottom:1rem;">
+          <div class="project-demo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <div>Demo GIF / video coming soon</div>
+          </div>
+          <div class="project-pai">
+            <div class="project-pai-item pai-problem">
+              <span class="project-pai-label">Problem</span>
+              <span class="project-pai-text">No visibility into system performance under peak load. SLA breaches were discovered only in production.</span>
+            </div>
+            <div class="project-pai-item pai-approach">
+              <span class="project-pai-label">Approach</span>
+              <span class="project-pai-text">Designed JMeter test plans with HTML dashboards, SLA threshold validation, load profiles for peak and sustained traffic, plus Python-based analysis.</span>
+            </div>
+            <div class="project-pai-item pai-impact">
+              <span class="project-pai-label">Impact</span>
+              <span class="project-pai-text">Enabled proactive SLA monitoring before release so teams could identify bottlenecks during pre-prod load tests instead of after go-live.</span>
+            </div>
+          </div>
+          <div class="skill-tags">
             <span class="skill-tag">JMeter</span>
             <span class="skill-tag">Python</span>
             <span class="skill-tag">SLA</span>
@@ -749,7 +1106,6 @@
       <h2 class="section-title">Professional Experience</h2>
     </div>
     <div class="timeline">
-
       <div class="timeline-item fade-up">
         <div class="timeline-dot"></div>
         <div class="timeline-period">Oct 2025 — Present</div>
@@ -767,7 +1123,6 @@
           <span class="skill-tag">Git Actions</span>
         </div>
       </div>
-
       <div class="timeline-item past fade-up">
         <div class="timeline-dot"></div>
         <div class="timeline-period">Mar 2023 — Sep 2025</div>
@@ -785,14 +1140,13 @@
           <span class="skill-tag">JMeter</span>
         </div>
       </div>
-
       <div class="timeline-item past fade-up">
         <div class="timeline-dot"></div>
         <div class="timeline-period">Oct 2021 — Feb 2023</div>
         <div class="timeline-company">Accenture — UBS & Broadridge (WMAP)</div>
         <div class="timeline-role">Functional Test Engineer</div>
         <div class="timeline-desc">
-          End-to-end SIT for Corporate Actions and Income Processing at UBS. Point of Contact for Payment Matcher. Recognized by client for quality delivery with rewards and nominations.
+          End-to-end SIT for Corporate Actions and Income Processing at UBS. Point of Contact for Payment Matcher. Recognised by client for quality delivery with rewards and nominations.
         </div>
         <div class="timeline-tags">
           <span class="skill-tag">SIT</span>
@@ -801,7 +1155,54 @@
           <span class="skill-tag">Capital Markets</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- WHY HIRE ME -->
+<section id="whyhire">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">The Differentiator</span>
+      <h2 class="section-title">What I Bring to Your Team</h2>
+    </div>
+    <div class="whyhire-grid stagger-children">
+      <div class="whyhire-card fade-up">
+        <div class="whyhire-icon">🧩</div>
+        <h4>Problem-First Thinker</h4>
+        <p>I don't just write tests. I understand what can break, why it matters, and how to prevent it systematically.</p>
+      </div>
+      <div class="whyhire-card fade-up">
+        <div class="whyhire-icon">🏗️</div>
+        <h4>Clean, Scalable Code</h4>
+        <p>Frameworks built for growth with Page Object patterns, reusable components, and CI-ready from day one.</p>
+      </div>
+      <div class="whyhire-card fade-up">
+        <div class="whyhire-icon">🚀</div>
+        <h4>Quick to Adapt</h4>
+        <p>Moved from capital markets to pharma to healthcare, ramping up on new domains and tech stacks fast.</p>
+      </div>
+      <div class="whyhire-card fade-up">
+        <div class="whyhire-icon">🤝</div>
+        <h4>Ownership Mindset</h4>
+        <p>Recognised by clients at UBS for quality. I take end-to-end responsibility, not just execution but outcomes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MY STORY -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-header fade-up" style="text-align:center;">
+      <span class="section-label">The Person Behind the Code</span>
+      <h2 class="section-title">My Journey</h2>
+    </div>
+    <div class="story-content fade-up">
+      <blockquote>I believe great software starts with someone asking: "What could go wrong?"</blockquote>
+      <p class="story-text">
+        I started my career fascinated by the idea that a single overlooked edge case could cascade into a real-world failure. That curiosity led me from functional testing at UBS, where I became the go-to person for payment reconciliation, to building full automation frameworks at Roche and Optum. Along the way, I picked up a dual role as a Business Analyst because understanding <em>what</em> we're building matters just as much as testing <em>how</em> it works. Today, I'm drawn to problems that sit at the intersection of reliability and scale. Automation, for me, isn't just about saving time. It's about protecting people's health records, financial transactions, and trust. I'm looking for a team in Singapore where I can bring this same intensity, grow into performance engineering, and contribute to systems that truly matter.
+      </p>
     </div>
   </div>
 </section>
@@ -813,23 +1214,23 @@
       <span class="section-label">Industry Experience</span>
       <h2 class="section-title">Domains</h2>
     </div>
-    <div class="domain-grid">
+    <div class="domain-grid stagger-children">
       <div class="domain-card fade-up">
         <span class="domain-emoji">🏥</span>
         <h4>Healthcare</h4>
         <p>Optum / UHG — Provider systems</p>
       </div>
-      <div class="domain-card fade-up" style="transition-delay:0.06s;">
+      <div class="domain-card fade-up">
         <span class="domain-emoji">💊</span>
         <h4>Pharma & Diagnostics</h4>
         <p>Roche — API & automation testing</p>
       </div>
-      <div class="domain-card fade-up" style="transition-delay:0.12s;">
+      <div class="domain-card fade-up">
         <span class="domain-emoji">📊</span>
         <h4>Capital Markets</h4>
         <p>UBS — Corporate actions</p>
       </div>
-      <div class="domain-card fade-up" style="transition-delay:0.18s;">
+      <div class="domain-card fade-up">
         <span class="domain-emoji">🏦</span>
         <h4>Wealth Management</h4>
         <p>Broadridge — Income processing</p>
@@ -864,17 +1265,105 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">What Others Say</span>
+      <h2 class="section-title">Testimonials</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <p class="testimonial-text">
+          "During my tenure in Accenture, I got to work with Sharanya for close to 10 months. She is a very sharp and a quick learner. She is a self-motivated team player. She started off as a quality analyst and in a very short span has taken over a role of a business analyst as well. She needs very little guidance, I trust her to work independently on the features assigned and have confidence that she will do a thorough job."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AJ</div>
+          <div>
+            <div class="testimonial-name">Anuradha Jayaraman</div>
+            <div class="testimonial-role">Project Manager · Healthcare IT | Agile Project Management</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up" style="transition-delay: 0.08s;">
+        <p class="testimonial-text">
+          "I have had the pleasure of working with Sharanya for the past 8 months. Initially joining our team as a tester, she quickly took on additional responsibilities as a business analyst and even stepped in to design UI mocks when needed. She consistently goes above and beyond to deliver outstanding results. Her calm demeanor, excellent organizational skills, and adaptability to new roles make her an invaluable asset to any team."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">NK</div>
+          <div>
+            <div class="testimonial-name">Naveen Kumar Chekkapalli</div>
+            <div class="testimonial-role">Domain Architect at FrieslandCampina | Ex-Roche | Ex-Accenture</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up" style="transition-delay: 0.16s;">
+        <p class="testimonial-text">
+          "I had the pleasure of working with Sharanya, and she is an excellent tester. She pays great attention to detail and is very thorough in finding and fixing issues. Sharanya is professional in her work and ensures that everything is done to the highest standard. I highly recommend Sharanya for any role where quality is important."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JJ</div>
+          <div>
+            <div class="testimonial-name">Jesna Jose</div>
+            <div class="testimonial-role">OutSystems Developer</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up" style="transition-delay: 0.24s;">
+        <p class="testimonial-text">
+          "I have worked with Sharanya for testing a new Corporate Action system and the dedication which she showed towards the project with deep knowledge of process really helped us. She met all the deadlines and is a great team player. Thank you Sharanya for your hard work. Keep shinning like this."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">IA</div>
+          <div>
+            <div class="testimonial-name">Itisha Aggarwal</div>
+            <div class="testimonial-role">Quality Engineering Senior Analyst at Accenture</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up" style="transition-delay: 0.32s;">
+        <p class="testimonial-text">
+          "Sai and I worked on implementing and testing a new Corporate Action system for Broadridge. Sai was organized and met all the deadlines that were assigned to the group. She handled execution of Memos &amp; Vol buckets, Batch and Entry few basic testcases, substitute payment execution, and more."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">KG</div>
+          <div>
+            <div class="testimonial-name">Kathy Guillou</div>
+            <div class="testimonial-role">Botsford Associates Consultant · Major US Bank – Corporate Actions</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up" style="transition-delay: 0.40s;">
+        <p class="testimonial-text">
+          "Sharanya is very dedicated in her work and completed all her deliverables in time. Not only that, she is a great team player who never hesitated to offer help to any team member whenever needed. Has a good knowledge in testing and was very good at tracking and chasing bugs till they get resolved."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AJ</div>
+          <div>
+            <div class="testimonial-name">Ashutosh J</div>
+            <div class="testimonial-role">E2E Test Engineer · MFX Migration | Payment – Swift, GRP, SEPA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="testimonial-note fade-up">Source: LinkedIn Recommendations</p>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
   <div class="container">
     <div class="fade-up">
       <span class="section-label">Let's Connect</span>
-      <h2 class="section-title">Open to Singapore Opportunities</h2>
+      <h2 class="section-title">Ready to Relocate. Ready to Deliver.</h2>
+      <p class="contact-cta-text">
+        If you're looking for someone who takes ownership, builds test frameworks that scale, and cares about quality as much as your users do, let's talk.
+      </p>
       <p class="contact-desc">
-        Currently based in Hyderabad, India — EP eligible and ready to relocate. Let's talk about how I can contribute to your QA team.
+        Based in Hyderabad, India. EP eligible and ready to relocate to Singapore.
       </p>
       <div class="contact-links">
-        <a href="mailto:saisharanya.rangineni@gmail.com" class="contact-btn">
+        <a href="mailto:saisharanya.rangineni@gmail.com" class="contact-btn highlight">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Email Me
         </a>
@@ -886,9 +1375,9 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           GitHub
         </a>
-        <a href="tel:+919701450017" class="contact-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call
+        <a href="resume.pdf" download class="contact-btn highlight" title="Download Resume">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
         </a>
       </div>
     </div>
@@ -896,7 +1385,7 @@
 </section>
 
 <footer>
-  <p>© 2026 Sai Sharanya Rangineni — Built with purpose.</p>
+  <p>&copy; 2026 Sai Sharanya Rangineni. Built with purpose.</p>
 </footer>
 
 <script>
@@ -924,8 +1413,43 @@
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Typing effect
+  const phrases = [
+    "I build test frameworks that catch bugs before users do.",
+    "From healthcare to capital markets, quality at scale.",
+    "Turning manual chaos into automated confidence.",
+    "Selenium. Playwright. CI/CD. End-to-end ownership."
+  ];
+  let phraseIndex = 0, charIndex = 0, isDeleting = false;
+  const typedEl = document.getElementById('typed-text');
+
+  function typeEffect() {
+    const current = phrases[phraseIndex];
+    if (!isDeleting) {
+      typedEl.textContent = current.substring(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === current.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 2200);
+        return;
+      }
+      setTimeout(typeEffect, 50);
+    } else {
+      typedEl.textContent = current.substring(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typeEffect, 500);
+        return;
+      }
+      setTimeout(typeEffect, 30);
+    }
+  }
+  setTimeout(typeEffect, 800);
 </script>
 
 </body>
