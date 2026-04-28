@@ -420,23 +420,6 @@
   }
   .project-link svg { width: 14px; height: 14px; }
 
-  .project-demo-placeholder {
-    background: var(--section-alt);
-    border: 2px dashed var(--border);
-    border-radius: 8px;
-    padding: 1.2rem;
-    text-align: center;
-    margin-bottom: 1rem;
-    color: var(--muted);
-    font-size: 0.82rem;
-    transition: border-color 0.3s;
-  }
-  .project-demo-placeholder:hover { border-color: var(--accent); }
-  .project-demo-placeholder svg {
-    width: 24px; height: 24px; margin-bottom: 0.3rem;
-    opacity: 0.5; display: block; margin-left: auto; margin-right: auto;
-  }
-
   /* ── TIMELINE ── */
   .timeline { position: relative; padding-left: 2.5rem; }
   .timeline::before {
@@ -939,6 +922,7 @@
     <div class="section-header fade-up">
       <span class="section-label">Portfolio</span>
       <h2 class="section-title">Featured Projects</h2>
+      <p style="font-size:0.85rem; color:var(--muted); margin-top:0.6rem; line-height:1.6; font-style:italic;">These projects are built for portfolio and demonstration purposes. No proprietary or company-related information, code, or projects have been used. All tests run against publicly available demo applications.</p>
     </div>
     <div class="projects-grid">
 
@@ -947,10 +931,6 @@
         <div class="project-body">
           <div class="project-type">Playwright • TypeScript</div>
           <h3>E2E Testing Framework — Playwright</h3>
-          <div class="project-demo-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <div>Demo GIF / video coming soon</div>
-          </div>
           <div class="project-pai">
             <div class="project-pai-item pai-problem">
               <span class="project-pai-label">Problem</span>
@@ -972,7 +952,7 @@
             <span class="skill-tag">Visual Regression</span>
           </div>
           <div class="project-links">
-            <a href="#" class="project-link">
+            <a href="https://github.com/saisharanya-rangineni/playwright-e2e-framework" target="_blank" class="project-link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub Repo
             </a>
@@ -985,10 +965,6 @@
         <div class="project-body">
           <div class="project-type">Selenium • Java • Cucumber</div>
           <h3>BDD Automation Framework — Selenium</h3>
-          <div class="project-demo-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <div>Demo GIF / video coming soon</div>
-          </div>
           <div class="project-pai">
             <div class="project-pai-item pai-problem">
               <span class="project-pai-label">Problem</span>
@@ -1010,7 +986,7 @@
             <span class="skill-tag">Docker</span>
           </div>
           <div class="project-links">
-            <a href="#" class="project-link">
+            <a href="https://github.com/saisharanya-rangineni/selenium-bdd-framework" target="_blank" class="project-link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub Repo
             </a>
@@ -1023,10 +999,6 @@
         <div class="project-body">
           <div class="project-type">Postman • Newman • REST Assured</div>
           <h3>API Testing Suite</h3>
-          <div class="project-demo-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <div>Demo GIF / video coming soon</div>
-          </div>
           <div class="project-pai">
             <div class="project-pai-item pai-problem">
               <span class="project-pai-label">Problem</span>
@@ -1048,7 +1020,7 @@
             <span class="skill-tag">JSON Schema</span>
           </div>
           <div class="project-links">
-            <a href="#" class="project-link">
+            <a href="https://github.com/saisharanya-rangineni/api-testing-suite" target="_blank" class="project-link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub Repo
             </a>
@@ -1061,10 +1033,6 @@
         <div class="project-body">
           <div class="project-type">JMeter • Performance</div>
           <h3>Performance Testing Dashboard</h3>
-          <div class="project-demo-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <div>Demo GIF / video coming soon</div>
-          </div>
           <div class="project-pai">
             <div class="project-pai-item pai-problem">
               <span class="project-pai-label">Problem</span>
@@ -1086,7 +1054,7 @@
             <span class="skill-tag">HTML Reports</span>
           </div>
           <div class="project-links">
-            <a href="#" class="project-link">
+            <a href="https://github.com/saisharanya-rangineni/performance-testing-dashboard" target="_blank" class="project-link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub Repo
             </a>
